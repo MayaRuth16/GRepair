@@ -16,6 +16,8 @@ import java.util.Locale;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME="Globalrepair.db";
     private static final int DATABASE_VERSION = 1;
+    private SQLiteDatabase dbWrite = this.getWritableDatabase();
+    private SQLiteDatabase dbRead = this.getReadableDatabase();
 
 
 
@@ -155,18 +157,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_DOMAIN);
         db.execSQL(CREATE_TABLE_SUBDOMAIN);
         // db.execSQL(CREATE_TABLE_NOTIFICATION);
-        addDomain(1, "Electricité", R.drawable.electricite, "Si certaines ampoules grillent beaucoup trop souvent, il est peut-être temps de faire appel à un électricien professionnel. Trouvez votre artisan de confiance chez nous.");
-
     }
 
-    public void addDomain(int id, String libelle, int image, String description){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void addDomain(String libelle, int image, String description){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DOMAIN_Id, id);
         contentValues.put(DOMAIN_Name, libelle);
         contentValues.put(DOMAIN_Image, image);
         contentValues.put(DOMAIN_Description, description);
-        db.insert(TABLE_DOMAIN, null, contentValues);
+        dbWrite.insert(TABLE_DOMAIN, null, contentValues);
+    }
+
+    public void clearDomainTable(){
+        dbWrite.execSQL("DELETE FROM "+ TABLE_DOMAIN);
     }
 
     @Override
@@ -190,8 +192,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public long RegisterUser(User user){
-        SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(USER_Id, user.getId());
         values.put(USER_Image, user.getImage());
@@ -201,14 +201,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(USER_Password, user.getPasword());
 
         //insert row
-        long user_id = db.insert(TABLE_USER, null, values);
+        long user_id = dbWrite.insert(TABLE_USER, null, values);
 
         return user_id;
     }
 
     public long SaveOrder(Order order){
-        SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(ORDER_Id, order.getId());
         values.put(ORDER_District, order.getDistrict());
@@ -220,14 +218,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(ORDER_SUBDOMAIN_ID, order.getIdSubDomain());
 
         //insert row
-        long order_id = db.insert(TABLE_ORDER, null, values);
+        long order_id = dbWrite.insert(TABLE_ORDER, null, values);
 
         return order_id;
     }
 
     public User LogUser(String email, String password){
-        SQLiteDatabase db = this.getReadableDatabase();
-
         String selectQuery = "SELECT * FROM " +
                 TABLE_USER + " WHERE " +
                 USER_Email + " = " + email + "AND"+
@@ -235,7 +231,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String LOG = "";
         Log.e(LOG, selectQuery );
 
-        Cursor c = db.rawQuery(selectQuery, null);
+        Cursor c = dbRead.rawQuery(selectQuery, null);
 
         if(c != null){
             c.moveToFirst();
@@ -254,13 +250,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Domain> DisplayDomain(){
-        SQLiteDatabase db = this.getReadableDatabase();
         List<Domain> domainList = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " +
                 TABLE_DOMAIN;
         String LOG = "DOMAIN";
-        Cursor c = db.rawQuery(selectQuery, null);
+        Cursor c = dbRead.rawQuery(selectQuery, null);
 
         if(c != null){
             c.moveToFirst();
@@ -280,7 +275,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Subdomain> DisplaySubDomain(int domain_id){
-        SQLiteDatabase db = this.getReadableDatabase();
         List<Subdomain> subDomainList = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " +
@@ -288,7 +282,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SUBDOMAIN_DOMAIN_ID + " = " + domain_id;
         String LOG = "SUBDOMAIN";
 
-        Cursor c = db.rawQuery(selectQuery, null);
+        Cursor c = dbRead.rawQuery(selectQuery, null);
 
         if(c != null){
             c.moveToFirst();
@@ -307,7 +301,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Address> AddressHistory(int addressUser_id){
-        SQLiteDatabase db = this.getReadableDatabase();
         List<Address> addressList = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " +
@@ -315,7 +308,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ADDRESS_USER_ID + " = " + addressUser_id;
         String LOG = "ADDRESS";
 
-        Cursor c = db.rawQuery(selectQuery, null);
+        Cursor c = dbRead.rawQuery(selectQuery, null);
 
         if(c != null){
             c.moveToFirst();
@@ -334,7 +327,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Order> OrderHistory(int orderUser_id){
-        SQLiteDatabase db = this.getReadableDatabase();
         List<Order> orderList = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " +
@@ -342,7 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ORDER_USER_ID + " = " + orderUser_id;
         String LOG = "ORDER";
 
-        Cursor c = db.rawQuery(selectQuery, null);
+        Cursor c = dbRead.rawQuery(selectQuery, null);
 
         if(c != null){
             c.moveToFirst();
