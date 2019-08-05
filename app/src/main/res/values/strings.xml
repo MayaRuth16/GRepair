@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">GRepair</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_domaine">Domaine</string>
+    <string name="title_activity_user">User</string>
+    <string name="title_activity_historique">Historique</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_suivi">Suivi</string>
+    <string name="title_activity_condition">Condition</string>
+    <string name="a_propos">A propos</string>
+    <string name="user">User</string>
+    <string name="suivi_commande">Suivi Commande</string>
+    <string name="historique">Historique</string>
+    <string name="domaines">Domaines</string>
+    <string name="conditions_generales">Conditions Generales</string>
+    <string name="globalrepair">GlobalRepair</string>
+
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="email">Email</string>
+    <string name="Prenom">Prénom</string>
+    <string name="Nom">Nom</string>
+    <string name="Quartier">Quartier</string>
+    <string name="Ville">Ville</string>
+    <string name="Telephone">Telephone</string>
+    <string name="Motdepasse">Mot de passe</string>
+    <string name="Email">Email</string>
+    <string name="ConfirmMotDePasse">Confirmer le mot de passe</string>
+    <string name="adresse">Adresse</string>
+    <string name="date">Date</string>
+    <string name="heure">Heure</string>
+    <string name="d_tails_suppl_mentaires">Détails supplémentaires</string>
+    <string name="votre_nom_et_pr_nom">Votre Nom et prénom</string>
+    <string name="num_ro_de_t_l_phone">Numéro de téléphone</string>
+
+
+    <string name="facebook_app_id">667595800354427</string>
+    <string name="fb_login_protocol_scheme">fb667595800354427</string>
+
+    <string-array name="service">
+        <item>Blindage porte</item>
+        <item>Changer serrure</item>
+        <item>Visser</item>
+        <item>xxx</item>
+        <item>xxx</item>
+    </string-array>
+    <string-array name="adresse">
+        <item>Bonamoussadi</item>
+        <item>Akwa</item>
+        <item>Makepe</item>
+        <item>Bonanjo</item>
+        <item>Logbessou</item>
+    </string-array>
+
+
+</resources>

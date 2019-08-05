@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_main"
+            android:title="Accueil"
+            android:icon="@drawable/ic_home"/>
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profil"
+            android:icon="@drawable/ic_user"/>
+        <item
+            android:id="@+id/nav_domaine"
+            android:icon="@drawable/ic_domaines"
+            android:title="Consulter les domaines" />
+        <item
+            android:id="@+id/nav_historique"
+            android:icon="@drawable/ic_history"
+            android:title="Consulter l'historique" />
+
+
+    </group>
+
+    <group>
+        <item
+            android:title="--">
+            <menu>
+                <item
+                    android:id="@+id/nav_condition"
+                    android:icon="@drawable/ic_conditions"
+                    android:title="Conditions générales" />
+                <item
+                    android:id="@+id/nav_propos"
+                    android:icon="@drawable/ic_about"
+                    android:title="A propos" />
+
+            </menu>
+        </item>
+    </group>
+
+</menu>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1C98D4</color>
+    <color name="colorPrimaryDark">#0A7FB8</color>
+    <color name="colorfonce">#28235B</color>
+    <color name="colorAccent">#FFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="electricite">#29224C</color>
+    <color name="plomberie">#795A41</color>
+    <color name="electromenager">#76726F</color>
+    <color name="vitrerie">#878787</color>
+    <color name="jardinage">#6C8B38</color>
+    <color name="vitre">#BFBFBF</color>
+    <color name="serrurerie">#413934</color>
+
+    <color name="colorBoutonfcbk">#101B55</color>
+    <color name="colorBoutonins">#1C98D4</color>
+    <color name="colorblack">#292727</color>
+    <color name="colorbackdomain">#FCFCFC</color>
+    <color name="colorgreen">#00BFA5</color>
+    <color name="colorpink">#FF4081</color>
+    <color name="colorgray">#FFF</color>
+    <color name="colorlightgray">#ededed</color>
+    <color name="colorbleu">#6BB7DA</color>
+    <color name="colorfon">#7296E2</color>
+</resources>
