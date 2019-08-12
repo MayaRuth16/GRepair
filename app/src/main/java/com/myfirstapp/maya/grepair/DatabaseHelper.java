@@ -167,6 +167,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dbWrite.insert(TABLE_DOMAIN, null, contentValues);
     }
 
+    public void addUser(User user){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(USER_Name, user.getName());
+            contentValues.put(USER_Email, user.getEmail());
+            contentValues.put(USER_Number, user.getNumber());
+            contentValues.put(USER_Password, user.getPasword());
+            dbWrite.insert(TABLE_USER,null,contentValues);
+    }
+    public boolean isUserAuth(String uEmail, String uPass){
+        Cursor result = dbRead.rawQuery("SELECT * FROM " + TABLE_USER, null);
+        result.moveToFirst();
+        while(!result.isAfterLast()){
+            String email = result.getString(result.getColumnIndex(USER_Email));
+            String pwd = result.getString(result.getColumnIndex(USER_Password));
+            if(uEmail.equals(email) && uPass.equals(pwd)){
+                return true;
+            }
+            result.moveToNext();
+        }
+        return false;
+    }
+
     public void clearDomainTable(){
         dbWrite.execSQL("DELETE FROM "+ TABLE_DOMAIN);
     }

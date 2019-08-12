@@ -26,7 +26,6 @@ public class DomaineActivity extends AppCompatActivity
         databaseHelper = new DatabaseHelper(getApplicationContext());
 
         recyclerView = findViewById(R.id.rv);
-
         domainList = new ArrayList<>();
         domainList = databaseHelper.DisplayDomain();
 

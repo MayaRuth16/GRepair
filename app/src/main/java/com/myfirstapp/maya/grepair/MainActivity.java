@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +28,14 @@ public class MainActivity extends AppCompatActivity
     List<Model> models;
     Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
-
+    Window window;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        window = getWindow();
 
         models = new ArrayList<>();
         models.add(new Model(R.drawable.electricite, "Electricité", "Si certaines ampoules grillent beaucoup trop souvent,que les plombs sautent dès que vous allumez trois appareils en même temps et que certaines prises ne fonctionnent tout simplement pas, il est peut-être temps de faire appel à un électricien professionnel. Trouvez votre artisan de confiance chez nous."));
@@ -66,6 +68,13 @@ public class MainActivity extends AppCompatActivity
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
                 if (position < (adapter.getCount() -1) && position < (colors.length - 1)) {
+                    window.setStatusBarColor(
+                            (Integer) argbEvaluator.evaluate(
+                                    positionOffset,
+                                    colors[position],
+                                    colors[position + 1]
+                            )
+                    );
                     viewPager.setBackgroundColor(
 
                             (Integer) argbEvaluator.evaluate(
